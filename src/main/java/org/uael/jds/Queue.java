@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 /**
  * The type Queue.
- *
  * @param <T> the type parameter
  */
 public class Queue<T> extends LinkedContainer<T> {
@@ -17,7 +16,6 @@ public class Queue<T> extends LinkedContainer<T> {
 
     /**
      * Instantiates a new Queue.
-     *
      * @param values the values
      */
     @SafeVarargs
@@ -27,7 +25,6 @@ public class Queue<T> extends LinkedContainer<T> {
 
     /**
      * Instantiates a new Queue.
-     *
      * @param iterable the iterable
      */
     public Queue(Iterable<? extends T> iterable) {
@@ -36,7 +33,6 @@ public class Queue<T> extends LinkedContainer<T> {
 
     /**
      * Instantiates a new Queue.
-     *
      * @param iterator the iterator
      */
     public Queue(Iterator<? extends T> iterator) {

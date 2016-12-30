@@ -14,12 +14,6 @@ public class ListTest extends SequenceTest<List<Integer>> {
         Assert.assertEquals(Integer.MAX_VALUE, sizeMax.capacity());
     }
 
-    @Test
-    @Override
-    public void resize() throws Exception {
-
-    }
-
     @Override
     List<Integer> create() {
         return new List<>();
@@ -38,5 +32,11 @@ public class ListTest extends SequenceTest<List<Integer>> {
     @Override
     List<Integer> create(Iterator<? extends Integer> iterator) {
         return new List<>(iterator);
+    }
+
+    @Test
+    @Override
+    public void resize() throws Exception {
+
     }
 }

@@ -64,7 +64,7 @@ public class Deque<T> extends LinkedSequence<T> {
 
         @Override
         public T previous() {
-            return ((Sequence<T>)container).shift();
+            return ((Sequence<T>) container).shift();
         }
     }
 }

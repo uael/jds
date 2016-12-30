@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 /**
  * The type Linked base.
- *
  * @param <T> the type parameter
  */
 abstract class LinkedContainer<T> extends LinkedCollection<T> implements Container<T> {
@@ -17,7 +16,6 @@ abstract class LinkedContainer<T> extends LinkedCollection<T> implements Contain
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param values the values
      */
     @SafeVarargs
@@ -27,7 +25,6 @@ abstract class LinkedContainer<T> extends LinkedCollection<T> implements Contain
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param iterable the iterable
      */
     LinkedContainer(Iterable<? extends T> iterable) {
@@ -36,7 +33,6 @@ abstract class LinkedContainer<T> extends LinkedCollection<T> implements Contain
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param iterator the iterator
      */
     LinkedContainer(Iterator<? extends T> iterator) {
@@ -91,7 +87,6 @@ abstract class LinkedContainer<T> extends LinkedCollection<T> implements Contain
 
         /**
          * Instantiates a new Container iterator.
-         *
          * @param container the container
          */
         ContainerIt(Container<T> container) {

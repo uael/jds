@@ -69,11 +69,10 @@ public class Main {
         duration = endTime - startTime;
         System.out.println("List get: " + duration);
 
-
 // ArrayList remove
         startTime = System.nanoTime();
 
-        for (int i = 9999; i >=0; i--) {
+        for (int i = 9999; i >= 0; i--) {
             arrayList.remove(i);
         }
         endTime = System.nanoTime();
@@ -83,7 +82,7 @@ public class Main {
 // LinkedList remove
         startTime = System.nanoTime();
 
-        for (int i = 9999; i >=0; i--) {
+        for (int i = 9999; i >= 0; i--) {
             linkedList.remove(i);
         }
         endTime = System.nanoTime();
@@ -93,7 +92,7 @@ public class Main {
 // List remove
         startTime = System.nanoTime();
 
-        for (int i = 9999; i >=0; i--) {
+        for (int i = 9999; i >= 0; i--) {
             list.remove(i);
         }
         endTime = System.nanoTime();

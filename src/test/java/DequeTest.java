@@ -15,18 +15,6 @@ public class DequeTest extends SequenceTest<Deque<Integer>> {
     }
 
     @Override
-    @Test
-    public void resize() throws Exception {
-
-    }
-
-    @Override
-    @Test
-    public void iteratorEmpty() throws Exception {
-        super.iteratorEmpty();
-    }
-
-    @Override
     Deque<Integer> create() {
         return new Deque<>();
     }
@@ -44,5 +32,17 @@ public class DequeTest extends SequenceTest<Deque<Integer>> {
     @Override
     Deque<Integer> create(Iterator<? extends Integer> iterator) {
         return new Deque<>(iterator);
+    }
+
+    @Override
+    @Test
+    public void iteratorEmpty() throws Exception {
+        super.iteratorEmpty();
+    }
+
+    @Override
+    @Test
+    public void resize() throws Exception {
+
     }
 }

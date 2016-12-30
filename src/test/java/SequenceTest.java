@@ -6,15 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.NoSuchElementException;
 
-import static org.junit.Assert.*;
-
 abstract class SequenceTest<U extends Sequence<Integer>> extends ContainerTest<U> {
-    @Override
-    @Test(expected = AssertionError.class)
-    public void iteratorEmpty() throws Exception {
-        super.iteratorEmpty();
-    }
-
     @Test
     public abstract void capacity() throws Exception;
 
@@ -122,13 +114,20 @@ abstract class SequenceTest<U extends Sequence<Integer>> extends ContainerTest<U
     }
 
     @Test
+    public void filter() throws Exception {
+
+    }
+
+    @Test
     public void filterNull() throws Exception {
 
     }
 
     @Test
-    public void filter() throws Exception {
-
+    public void get() throws Exception {
+        Assert.assertEquals(one, size1.get(0));
+        Assert.assertEquals(one, size2.get(0));
+        Assert.assertEquals(two, size2.get(1));
     }
 
     @Test(expected = NoSuchElementException.class)
@@ -139,13 +138,6 @@ abstract class SequenceTest<U extends Sequence<Integer>> extends ContainerTest<U
     @Test(expected = NoSuchElementException.class)
     public void getFail() throws Exception {
         Assert.assertNull(size1.get(1));
-    }
-
-    @Test
-    public void get() throws Exception {
-        Assert.assertEquals(one, size1.get(0));
-        Assert.assertEquals(one, size2.get(0));
-        Assert.assertEquals(two, size2.get(1));
     }
 
     @Test
@@ -168,13 +160,19 @@ abstract class SequenceTest<U extends Sequence<Integer>> extends ContainerTest<U
 
     }
 
-    @Test
-    public abstract void resize() throws Exception;
+    @Override
+    @Test(expected = AssertionError.class)
+    public void iteratorEmpty() throws Exception {
+        super.iteratorEmpty();
+    }
 
     @Test
     public void remove() throws Exception {
 
     }
+
+    @Test
+    public abstract void resize() throws Exception;
 
     @Test
     public void set() throws Exception {

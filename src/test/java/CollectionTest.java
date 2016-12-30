@@ -9,7 +9,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * The type Collection test.
- *
  * @param <U> the type parameter
  */
 abstract class CollectionTest<U extends Collection<Integer>> {
@@ -27,16 +26,16 @@ abstract class CollectionTest<U extends Collection<Integer>> {
      */
     sizeMax;
     /**
+     * The MaxSize.
+     */
+    int maxSize;
+    /**
      * The One and Two.
      */
     Integer one, /**
      * The Two.
      */
     two;
-    /**
-     * The MaxSize.
-     */
-    int maxSize;
 
     /**
      * Instantiates a new Collection test.
@@ -47,7 +46,6 @@ abstract class CollectionTest<U extends Collection<Integer>> {
 
     /**
      * Instantiates a new Collection test.
-     *
      * @param maxSize the max size
      */
     CollectionTest(int maxSize) {
@@ -55,15 +53,27 @@ abstract class CollectionTest<U extends Collection<Integer>> {
     }
 
     /**
+     * Clear.
+     * @throws Exception the exception
+     */
+    @Test
+    public void clear() throws Exception {
+        size1.clear();
+        Assert.assertTrue(size1.isEmpty());
+        size2.clear();
+        Assert.assertTrue(size2.isEmpty());
+        sizeMax.clear();
+        Assert.assertTrue(sizeMax.isEmpty());
+    }
+
+    /**
      * Create u.
-     *
      * @return the u
      */
     abstract U create();
 
     /**
      * Create u.
-     *
      * @param values the values
      * @return the u
      */
@@ -71,7 +81,6 @@ abstract class CollectionTest<U extends Collection<Integer>> {
 
     /**
      * Create u.
-     *
      * @param iterable the iterable
      * @return the u
      */
@@ -79,15 +88,57 @@ abstract class CollectionTest<U extends Collection<Integer>> {
 
     /**
      * Create u.
-     *
      * @param iterator the iterator
      * @return the u
      */
     abstract U create(Iterator<? extends Integer> iterator);
 
     /**
+     * Is empty.
+     * @throws Exception the exception
+     */
+    @Test
+    public void isEmpty() throws Exception {
+        Assert.assertTrue(empty.isEmpty());
+        Assert.assertFalse(size1.isEmpty());
+        Assert.assertFalse(size2.isEmpty());
+        Assert.assertFalse(sizeMax.isEmpty());
+    }
+
+    /**
+     * Iterator.
+     * @throws Exception the exception
+     */
+    @Test
+    public void iterator() throws Exception {
+        Iterator<Integer> it = empty.iterator();
+        Assert.assertFalse(it.hasNext());
+        Assert.assertNull(it.next());
+        it = size1.iterator();
+        for (int i = 0; i < 1; i++) {
+            Assert.assertTrue(it.hasNext());
+            Assert.assertNotNull(it.next());
+        }
+        Assert.assertFalse(it.hasNext());
+        Assert.assertNull(it.next());
+        it = size2.iterator();
+        for (int i = 0; i < 2; i++) {
+            Assert.assertTrue(it.hasNext());
+            Assert.assertNotNull(it.next());
+        }
+        Assert.assertFalse(it.hasNext());
+        Assert.assertNull(it.next());
+        it = sizeMax.iterator();
+        for (int i = 0; i < maxSize; i++) {
+            Assert.assertTrue(it.hasNext());
+            Assert.assertNotNull(it.next());
+        }
+        Assert.assertFalse(it.hasNext());
+        Assert.assertNull(it.next());
+    }
+
+    /**
      * Next int integer.
-     *
      * @return the integer
      */
     Integer nextInt() {
@@ -96,7 +147,6 @@ abstract class CollectionTest<U extends Collection<Integer>> {
 
     /**
      * Next int integer.
-     *
      * @param min the min
      * @param max the max
      * @return the integer
@@ -107,7 +157,6 @@ abstract class CollectionTest<U extends Collection<Integer>> {
 
     /**
      * Sets up.
-     *
      * @throws Exception the exception
      */
     @SuppressWarnings({"unchecked", "ArraysAsListWithZeroOrOneArgument"})
@@ -146,69 +195,7 @@ abstract class CollectionTest<U extends Collection<Integer>> {
     }
 
     /**
-     * Clear.
-     *
-     * @throws Exception the exception
-     */
-    @Test
-    public void clear() throws Exception {
-        size1.clear();
-        Assert.assertTrue(size1.isEmpty());
-        size2.clear();
-        Assert.assertTrue(size2.isEmpty());
-        sizeMax.clear();
-        Assert.assertTrue(sizeMax.isEmpty());
-    }
-
-    /**
-     * Is empty.
-     *
-     * @throws Exception the exception
-     */
-    @Test
-    public void isEmpty() throws Exception {
-        Assert.assertTrue(empty.isEmpty());
-        Assert.assertFalse(size1.isEmpty());
-        Assert.assertFalse(size2.isEmpty());
-        Assert.assertFalse(sizeMax.isEmpty());
-    }
-
-    /**
-     * Iterator.
-     *
-     * @throws Exception the exception
-     */
-    @Test
-    public void iterator() throws Exception {
-        Iterator<Integer> it = empty.iterator();
-        Assert.assertFalse(it.hasNext());
-        Assert.assertNull(it.next());
-        it = size1.iterator();
-        for (int i = 0; i < 1; i++) {
-            Assert.assertTrue(it.hasNext());
-            Assert.assertNotNull(it.next());
-        }
-        Assert.assertFalse(it.hasNext());
-        Assert.assertNull(it.next());
-        it = size2.iterator();
-        for (int i = 0; i < 2; i++) {
-            Assert.assertTrue(it.hasNext());
-            Assert.assertNotNull(it.next());
-        }
-        Assert.assertFalse(it.hasNext());
-        Assert.assertNull(it.next());
-        it = sizeMax.iterator();
-        for (int i = 0; i < maxSize; i++) {
-            Assert.assertTrue(it.hasNext());
-            Assert.assertNotNull(it.next());
-        }
-        Assert.assertFalse(it.hasNext());
-        Assert.assertNull(it.next());
-    }
-
-    /**
      * Size.
-     *
      * @throws Exception the exception
      */
     @Test

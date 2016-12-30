@@ -5,7 +5,6 @@ import java.util.NoSuchElementException;
 
 /**
  * The type Linked base.
- *
  * @param <T> the type parameter
  */
 abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
@@ -23,7 +22,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param values the values
      */
     @SafeVarargs
@@ -34,7 +32,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param iterable the iterable
      */
     LinkedCollection(Iterable<? extends T> iterable) {
@@ -44,7 +41,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param iterator the iterator
      */
     LinkedCollection(Iterator<? extends T> iterator) {
@@ -54,7 +50,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Back node.
-     *
      * @return the node
      */
     final Node<T> back() {
@@ -69,7 +64,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Front node.
-     *
      * @return the node
      */
     final Node<T> front() {
@@ -78,7 +72,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Insert after node.
-     *
      * @param node  the node
      * @param value the value
      * @return the node
@@ -89,7 +82,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Insert after node.
-     *
      * @param node   the node
      * @param values the values
      * @return the node
@@ -100,7 +92,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Insert after node.
-     *
      * @param node     the node
      * @param iterator the iterator
      * @return the node
@@ -121,7 +112,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Insert before node.
-     *
      * @param node  the node
      * @param value the value
      * @return the node
@@ -132,7 +122,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Insert before node.
-     *
      * @param node   the node
      * @param values the values
      * @return the node
@@ -143,7 +132,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Insert before node.
-     *
      * @param node     the node
      * @param iterator the iterator
      * @return the node
@@ -169,7 +157,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Link node.
-     *
      * @param node the node
      * @param prev the prev
      * @param next the next
@@ -192,13 +179,12 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
         if (index < this.size >> 1) {
             return super.next(index);
         } else {
-            return super.prev(this.size-index-1);
+            return super.prev(this.size - index - 1);
         }
     }
 
     /**
      * Pop back node.
-     *
      * @return the node
      */
     final Node<T> pop_back() {
@@ -207,7 +193,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Pop front node.
-     *
      * @return the node
      */
     final Node<T> pop_front() {
@@ -222,13 +207,12 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
         if (index < this.size >> 1) {
             return super.prev(index);
         } else {
-            return super.next(this.size-index-1);
+            return super.next(this.size - index - 1);
         }
     }
 
     /**
      * Push back node.
-     *
      * @param value the value
      * @return the node
      */
@@ -238,7 +222,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Push back node.
-     *
      * @param values the values
      * @return the node
      */
@@ -249,7 +232,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Push back node.
-     *
      * @param iterator the iterator
      * @return the node
      */
@@ -259,7 +241,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Push front node.
-     *
      * @param value the value
      * @return the node
      */
@@ -269,7 +250,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Push front node.
-     *
      * @param values the values
      * @return the node
      */
@@ -280,7 +260,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Push front node.
-     *
      * @param iterator the iterator
      * @return the node
      */
@@ -295,7 +274,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Unlink node.
-     *
      * @param node the node
      * @return the node
      */
@@ -305,7 +283,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Unlink node.
-     *
      * @param node the node
      * @param prev the prev
      * @param next the next

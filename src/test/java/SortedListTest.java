@@ -9,6 +9,15 @@ import java.util.Iterator;
  * The type Ordered list test.
  */
 public class SortedListTest extends SequenceTest<SortedList<Integer>> {
+    @Test
+    @Override
+    public void capacity() throws Exception {
+        Assert.assertEquals(Integer.MAX_VALUE, empty.capacity());
+        Assert.assertEquals(Integer.MAX_VALUE, size1.capacity());
+        Assert.assertEquals(Integer.MAX_VALUE, size2.capacity());
+        Assert.assertEquals(Integer.MAX_VALUE, sizeMax.capacity());
+    }
+
     @Override
     SortedList<Integer> create() {
         return new SortedList<>();
@@ -31,17 +40,28 @@ public class SortedListTest extends SequenceTest<SortedList<Integer>> {
 
     @Test
     @Override
-    public void capacity() throws Exception {
-        Assert.assertEquals(Integer.MAX_VALUE, empty.capacity());
-        Assert.assertEquals(Integer.MAX_VALUE, size1.capacity());
-        Assert.assertEquals(Integer.MAX_VALUE, size2.capacity());
-        Assert.assertEquals(Integer.MAX_VALUE, sizeMax.capacity());
+    public void first() throws Exception {
+        Assert.assertNull(empty.first());
+        Assert.assertEquals(one, size1.first());
+        Assert.assertEquals(new Integer(Math.min(one, two)), size2.first());
+        Assert.assertNotNull(sizeMax.first());
     }
 
     @Test
     @Override
-    public void resize() throws Exception {
+    public void get() throws Exception {
+        Assert.assertEquals(one, size1.get(0));
+        Assert.assertEquals(new Integer(Math.min(one, two)), size2.get(0));
+        Assert.assertEquals(new Integer(Math.max(one, two)), size2.get(1));
+    }
 
+    @Test
+    @Override
+    public void last() throws Exception {
+        Assert.assertNull(empty.last());
+        Assert.assertEquals(one, size1.last());
+        Assert.assertEquals(new Integer(Math.max(one, two)), size2.last());
+        Assert.assertNotNull(sizeMax.last());
     }
 
     @Test
@@ -57,24 +77,6 @@ public class SortedListTest extends SequenceTest<SortedList<Integer>> {
         Assert.assertEquals(0, size2.size());
         Assert.assertNotNull(sizeMax.pop());
         Assert.assertEquals(maxSize - 1, sizeMax.size());
-    }
-
-    @Test
-    @Override
-    public void first() throws Exception {
-        Assert.assertNull(empty.first());
-        Assert.assertEquals(one, size1.first());
-        Assert.assertEquals(new Integer(Math.min(one, two)), size2.first());
-        Assert.assertNotNull(sizeMax.first());
-    }
-
-    @Test
-    @Override
-    public void last() throws Exception {
-        Assert.assertNull(empty.last());
-        Assert.assertEquals(one, size1.last());
-        Assert.assertEquals(new Integer(Math.max(one, two)), size2.last());
-        Assert.assertNotNull(sizeMax.last());
     }
 
     @Test
@@ -147,9 +149,7 @@ public class SortedListTest extends SequenceTest<SortedList<Integer>> {
 
     @Test
     @Override
-    public void get() throws Exception {
-        Assert.assertEquals(one, size1.get(0));
-        Assert.assertEquals(new Integer(Math.min(one, two)), size2.get(0));
-        Assert.assertEquals(new Integer(Math.max(one, two)), size2.get(1));
+    public void resize() throws Exception {
+
     }
 }

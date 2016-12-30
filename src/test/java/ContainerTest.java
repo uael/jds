@@ -6,14 +6,12 @@ import java.util.Arrays;
 
 /**
  * The type Container test.
- *
  * @param <U> the type parameter
  */
 abstract class ContainerTest<U extends Container<Integer>> extends CollectionTest<U> {
 
     /**
      * First.
-     *
      * @throws Exception the exception
      */
     @Test
@@ -24,9 +22,17 @@ abstract class ContainerTest<U extends Container<Integer>> extends CollectionTes
         Assert.assertNotNull(sizeMax.first());
     }
 
+    @Test
+    public void iteratorEmpty() throws Exception {
+        super.iterator();
+        Assert.assertTrue(empty.isEmpty());
+        Assert.assertTrue(size1.isEmpty());
+        Assert.assertTrue(size2.isEmpty());
+        Assert.assertTrue(sizeMax.isEmpty());
+    }
+
     /**
      * Last.
-     *
      * @throws Exception the exception
      */
     @Test
@@ -39,7 +45,6 @@ abstract class ContainerTest<U extends Container<Integer>> extends CollectionTes
 
     /**
      * Pop.
-     *
      * @throws Exception the exception
      */
     @Test
@@ -56,18 +61,8 @@ abstract class ContainerTest<U extends Container<Integer>> extends CollectionTes
         Assert.assertEquals(maxSize - 1, sizeMax.size());
     }
 
-    @Test
-    public void iteratorEmpty() throws Exception {
-        super.iterator();
-        Assert.assertTrue(empty.isEmpty());
-        Assert.assertTrue(size1.isEmpty());
-        Assert.assertTrue(size2.isEmpty());
-        Assert.assertTrue(sizeMax.isEmpty());
-    }
-
     /**
      * Push.
-     *
      * @throws Exception the exception
      */
     @Test
@@ -89,7 +84,6 @@ abstract class ContainerTest<U extends Container<Integer>> extends CollectionTes
 
     /**
      * Push array.
-     *
      * @throws Exception the exception
      */
     @Test
@@ -111,7 +105,6 @@ abstract class ContainerTest<U extends Container<Integer>> extends CollectionTes
 
     /**
      * Push iterable.
-     *
      * @throws Exception the exception
      */
     @Test
@@ -133,7 +126,6 @@ abstract class ContainerTest<U extends Container<Integer>> extends CollectionTes
 
     /**
      * Push iterator.
-     *
      * @throws Exception the exception
      */
     @Test

@@ -2,13 +2,11 @@ package org.uael.jds;
 
 /**
  * The interface Queryable.
- *
  * @param <T> the type parameter
  */
 public interface Queryable<T> extends Sequence<T> {
     /**
      * Count int.
-     *
      * @return the int
      */
     default int count() {
@@ -17,7 +15,6 @@ public interface Queryable<T> extends Sequence<T> {
 
     /**
      * Count int.
-     *
      * @param predicate the predicate
      * @return the int
      */
@@ -25,7 +22,6 @@ public interface Queryable<T> extends Sequence<T> {
 
     /**
      * Select list.
-     *
      * @param <U> the type parameter
      * @return the list
      */
@@ -36,7 +32,6 @@ public interface Queryable<T> extends Sequence<T> {
 
     /**
      * Select list.
-     *
      * @param <U>       the type parameter
      * @param predicate the predicate
      * @return the list
@@ -45,7 +40,6 @@ public interface Queryable<T> extends Sequence<T> {
 
     /**
      * Where list.
-     *
      * @param predicate the predicate
      * @return the list
      */
