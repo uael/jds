@@ -56,11 +56,12 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
 
     @Override
     public boolean contains(Object... values) {
-        return this.contains(values, 0);
-    }
-
-    private boolean contains(Object[] values, int index) {
-        return index >= values.length || this.contains(values[index]) && this.contains(values, index + 1);
+        for (Object object : values) {
+            if (this.find(object) == null) {
+                return false;
+            }
+        }
+        return values.length > 0;
     }
 
     @Override
@@ -109,11 +110,13 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
 
     @Override
     public boolean erase(Object... values) {
-        return this.erase(values, 0);
-    }
-
-    private boolean erase(Object[] values, int index) {
-        return index >= values.length || this.erase(values[index]) && this.erase(values, index + 1);
+        int removed = 0;
+        for (Object object : values) {
+            if (this.erase(object)) {
+                removed++;
+            }
+        }
+        return values.length == removed;
     }
 
     @Override
@@ -123,18 +126,14 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
 
     @Override
     public boolean erase(Iterator<?> iterator) {
-        return this.erase(iterator, 0, 0);
-    }
-
-    private boolean erase(Iterator<?> iterator, int count, int removed) {
-        if (!iterator.hasNext()) {
-            return count == removed;
+        int removed = 0, count = 0;
+        while (iterator.hasNext()) {
+            count++;
+            if (this.erase(iterator.next())) {
+                removed++;
+            }
         }
-        count++;
-        if (this.erase(iterator.next())) {
-            removed++;
-        }
-        return this.erase(iterator, count, removed);
+        return count == removed;
     }
 
     @Override
