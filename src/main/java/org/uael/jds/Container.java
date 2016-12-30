@@ -7,6 +7,26 @@ import java.util.Iterator;
  * @param <T> the type parameter
  */
 public interface Container<T> extends Collection<T> {
+    @Override
+    default void add(T value) {
+        push(value);
+    }
+
+    @Override
+    default void add(T[] values) {
+        push(values);
+    }
+
+    @Override
+    default void add(Iterable<? extends T> iterable) {
+        push(iterable);
+    }
+
+    @Override
+    default void add(Iterator<? extends T> iterator) {
+        push(iterator);
+    }
+
     /**
      * First t.
      * @return the t

@@ -1,5 +1,9 @@
 package org.uael.jds;
 
+/**
+ * The interface Double iterable.
+ * @param <T> the type parameter
+ */
 public interface DoubleIterable<T> extends Iterable<T> {
     /**
      * Desc reversed.
