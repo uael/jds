@@ -19,56 +19,92 @@ public interface Sequence<T> extends Container<T>, DoubleIterable<T> {
      * @param value the value
      * @return the boolean
      */
-    boolean contains(Object value);
+    default boolean contains(Object value) {
+        return this.indexOf(value) >= 0;
+    }
 
     /**
      * Contains boolean.
      * @param values the values
      * @return the boolean
      */
-    boolean contains(Object... values);
+    default boolean contains(Object... values) {
+        for (Object object : values) {
+            if (!this.contains(object)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Contains boolean.
      * @param iterable the iterable
      * @return the boolean
      */
-    boolean contains(Iterable<?> iterable);
+    default boolean contains(Iterable<?> iterable) {
+        return this.contains(iterable.iterator());
+    }
 
     /**
      * Contains boolean.
      * @param iterator the iterator
      * @return the boolean
      */
-    boolean contains(Iterator<?> iterator);
+    default boolean contains(Iterator<?> iterator) {
+        return !iterator.hasNext() || this.contains(iterator.next()) && this.contains(iterator);
+    }
 
     /**
      * Erase boolean.
      * @param value the value
      * @return the boolean
      */
-    boolean erase(Object value);
+    default boolean erase(Object value) {
+        int i = indexOf(value);
+        return i >= 0 && remove(this.indexOf(value)) != null;
+    }
 
     /**
      * Erase boolean.
      * @param values the values
      * @return the boolean
      */
-    boolean erase(Object... values);
+    default boolean erase(Object... values) {
+        int count = 0, removed = 0;
+        for (Object object : values) {
+            count++;
+            if (this.erase(object)) {
+                removed++;
+            }
+        }
+        return count == removed;
+    }
 
     /**
      * Erase boolean.
      * @param iterable the iterable
      * @return the boolean
      */
-    boolean erase(Iterable<?> iterable);
+    default boolean erase(Iterable<?> iterable) {
+        return this.erase(iterable.iterator());
+    }
 
     /**
      * Erase boolean.
      * @param iterator the iterator
      * @return the boolean
      */
-    boolean erase(Iterator<?> iterator);
+    default boolean erase(Iterator<?> iterator) {
+        int count = 0, removed = 0;
+        while (iterator.hasNext()) {
+            count++;
+            if (this.erase(iterator.next())) {
+                removed++;
+            }
+        }
+        return count == removed;
+    }
 
     /**
      * Filter.
@@ -109,21 +145,31 @@ public interface Sequence<T> extends Container<T>, DoubleIterable<T> {
      * @param index  the index
      * @param values the values
      */
-    void insert(int index, T... values);
+    default void insert(int index, T... values) {
+        for (T value: values) {
+            this.insert(index, value);
+        }
+    }
 
     /**
      * Insert.
      * @param index    the index
      * @param iterable the iterable
      */
-    void insert(int index, Iterable<? extends T> iterable);
+    default void insert(int index, Iterable<? extends T> iterable) {
+        this.insert(index, iterable.iterator());
+    }
 
     /**
      * Insert.
      * @param index    the index
      * @param iterator the iterator
      */
-    void insert(int index, Iterator<? extends T> iterator);
+    default void insert(int index, Iterator<? extends T> iterator) {
+        while (iterator.hasNext()) {
+            this.insert(index++, iterator.next());
+        }
+    }
 
     /**
      * Remove t.
@@ -146,11 +192,37 @@ public interface Sequence<T> extends Container<T>, DoubleIterable<T> {
      */
     T set(int index, T value);
 
+    @Override
+    default T first() {
+        if (this.size() <= 0) {
+            return null;
+        }
+        return this.get(0);
+    }
+
+    @Override
+    default T last() {
+        if (this.size() <= 0) {
+            return null;
+        }
+        return this.get(Math.max(this.size()-1, 0));
+    }
+
+    @Override
+    default T pop() {
+        if (this.size() <= 0) {
+            return null;
+        }
+        return this.remove(Math.max(this.size()-1, 0));
+    }
+
     /**
      * Shift t.
      * @return the t
      */
-    T shift();
+    default T shift() {
+        return this.remove(0);
+    }
 
     /**
      * Slice.
@@ -163,23 +235,38 @@ public interface Sequence<T> extends Container<T>, DoubleIterable<T> {
      * Unshift.
      * @param value the value
      */
-    void unshift(T value);
+    default void unshift(T value) {
+        this.insert(0, value);
+    }
 
     /**
      * Unshift.
      * @param values the values
      */
-    void unshift(T... values);
+    default void unshift(T... values) {
+        for (int i = values.length; i >= 0; i--) {
+            this.unshift(values[i]);
+        }
+    }
 
     /**
      * Unshift.
      * @param iterable the iterable
      */
-    void unshift(Iterable<? extends T> iterable);
+    default void unshift(Iterable<? extends T> iterable) {
+        this.unshift(iterable.iterator());
+    }
 
     /**
      * Unshift.
      * @param iterator the iterator
      */
-    void unshift(Iterator<? extends T> iterator);
+    default void unshift(Iterator<? extends T> iterator) {
+        if (iterator.hasNext()) {
+            this.unshift(iterator.next());
+        }
+        while (iterator.hasNext()) {
+            this.insert(1, iterator.next());
+        }
+    }
 }

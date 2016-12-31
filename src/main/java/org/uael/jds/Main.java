@@ -5,9 +5,10 @@ import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList arrayList = new ArrayList();
-        LinkedList linkedList = new LinkedList();
-        List list = new List();
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        List<Integer> list = new List<>();
+        Vector<Integer> vector = new Vector<>();
 
 // ArrayList add
         long startTime = System.nanoTime();
@@ -29,15 +30,25 @@ public class Main {
         duration = endTime - startTime;
         System.out.println("LinkedList add: " + duration);
 
-// List push
+// List add
         startTime = System.nanoTime();
 
         for (int i = 0; i < 100000; i++) {
-            list.push(i);
+            list.add(i);
         }
         endTime = System.nanoTime();
         duration = endTime - startTime;
         System.out.println("List add: " + duration);
+
+// Vector add
+        startTime = System.nanoTime();
+
+        for (int i = 0; i < 100000; i++) {
+            vector.add(i);
+        }
+        endTime = System.nanoTime();
+        duration = endTime - startTime;
+        System.out.println("Vector add: " + duration);
 
 // ArrayList get
         startTime = System.nanoTime();
@@ -69,6 +80,15 @@ public class Main {
         duration = endTime - startTime;
         System.out.println("List get: " + duration);
 
+// Vector get
+        startTime = System.nanoTime();
+
+        for (int i = 0; i < 10000; i++) {
+            vector.get(i);
+        }
+        endTime = System.nanoTime();
+        duration = endTime - startTime;
+        System.out.println("Vector get: " + duration);
 
 // ArrayList remove
         startTime = System.nanoTime();
@@ -99,5 +119,15 @@ public class Main {
         endTime = System.nanoTime();
         duration = endTime - startTime;
         System.out.println("List remove: " + duration);
+
+// Vector remove
+        startTime = System.nanoTime();
+
+        for (int i = 9999; i >= 0; i--) {
+            vector.remove(i);
+        }
+        endTime = System.nanoTime();
+        duration = endTime - startTime;
+        System.out.println("Vector remove: " + duration);
     }
 }
