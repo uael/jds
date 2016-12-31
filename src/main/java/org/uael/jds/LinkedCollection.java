@@ -29,7 +29,7 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
     @SafeVarargs
     LinkedCollection(T... values) {
         super();
-        this.push_back(values);
+        this.insertBefore(this, values);
     }
 
     /**
@@ -39,7 +39,7 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
      */
     LinkedCollection(Iterable<? extends T> iterable) {
         super();
-        this.push_back(iterable.iterator());
+        this.insertBefore(this, iterable.iterator());
     }
 
     /**
@@ -49,7 +49,7 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
      */
     LinkedCollection(Iterator<? extends T> iterator) {
         super();
-        this.push_back(iterator);
+        this.insertBefore(this, iterator);
     }
 
     /**
@@ -196,24 +196,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
         }
     }
 
-    /**
-     * Pop back node.
-     *
-     * @return the node
-     */
-    final Node<T> pop_back() {
-        return this.unlink(this.prev, this.prev.prev, this.prev.next);
-    }
-
-    /**
-     * Pop front node.
-     *
-     * @return the node
-     */
-    final Node<T> pop_front() {
-        return this.unlink(this.next, this.next.prev, this.next.next);
-    }
-
     @Override
     Node<T> prev(int index) {
         if (index >= this.size) {
@@ -227,35 +209,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
     }
 
     /**
-     * Push back node.
-     *
-     * @param value the value
-     * @return the node
-     */
-    final Node<T> push_back(T value) {
-        return this.insertBefore(this, value);
-    }
-
-    /**
-     * Push back node.
-     *
-     * @param values the values
-     * @return the node
-     */
-    @SafeVarargs
-    final Node<T> push_back(T... values) {
-        return this.insertBefore(this, values);
-    }
-
-    /**
-     * Push back node.
-     *
-     * @param iterator the iterator
-     * @return the node
-     */
-    final Node<T> push_back(Iterator<? extends T> iterator) {
-        return this.insertBefore(this, iterator);
-    }
 
     /**
      * Push front node.

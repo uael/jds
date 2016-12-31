@@ -182,28 +182,24 @@ abstract class CollectionTest<U extends Collection<Integer>> {
     public void iterator() throws Exception {
         Iterator<Integer> it = empty.iterator();
         Assert.assertFalse(it.hasNext());
-        Assert.assertNull(it.next());
         it = size1.iterator();
         for (int i = 0; i < 1; i++) {
             Assert.assertTrue(it.hasNext());
             Assert.assertNotNull(it.next());
         }
         Assert.assertFalse(it.hasNext());
-        Assert.assertNull(it.next());
         it = size2.iterator();
         for (int i = 0; i < 2; i++) {
             Assert.assertTrue(it.hasNext());
             Assert.assertNotNull(it.next());
         }
         Assert.assertFalse(it.hasNext());
-        Assert.assertNull(it.next());
         it = sizeMax.iterator();
         for (int i = 0; i < maxSize; i++) {
             Assert.assertTrue(it.hasNext());
             Assert.assertNotNull(it.next());
         }
         Assert.assertFalse(it.hasNext());
-        Assert.assertNull(it.next());
     }
 
     /**

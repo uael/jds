@@ -207,7 +207,7 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
 
     @Override
     public T shift() {
-        return this.pop_front().value;
+        return this.unlink(this.next, this.next.prev, this.next.next).value;
     }
 
     @Override

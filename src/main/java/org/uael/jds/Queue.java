@@ -45,6 +45,6 @@ public class Queue<T> extends LinkedContainer<T> {
 
     @Override
     public T pop() {
-        return this.pop_front().value;
+        return this.unlink(this.next, this.next.prev, this.next.next).value;
     }
 }

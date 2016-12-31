@@ -60,27 +60,27 @@ abstract class LinkedContainer<T> extends LinkedCollection<T> implements Contain
 
     @Override
     public T pop() {
-        return this.pop_back().value;
+        return this.unlink(this.prev, this.prev.prev, this.prev.next).value;
     }
 
     @Override
     public void push(T value) {
-        this.push_back(value);
+        this.insertBefore(this, value);
     }
 
     @SafeVarargs
     public final void push(T... values) {
-        this.push_back(values);
+        this.insertBefore(this, values);
     }
 
     @Override
     public void push(Iterable<? extends T> iterable) {
-        this.push_back(iterable.iterator());
+        this.insertBefore(this, iterable.iterator());
     }
 
     @Override
     public void push(Iterator<? extends T> iterator) {
-        this.push_back(iterator);
+        this.insertBefore(this, iterator);
     }
 
     /**
