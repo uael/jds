@@ -42,14 +42,14 @@ class Node<T> {
      * @return the node
      */
     final Node<T> find(Object o) {
-        return this.next.find(this, o);
-    }
-
-    private Node<T> find(Node<T> end, Object o) {
-        if (Objects.equals(this.value, o)) {
-            return this;
+        Node<T> node = this.next;
+        while (node != this) {
+            if (Objects.equals(node.value, o)) {
+                return node;
+            }
+            node = node.next;
         }
-        return this.next != end ? this.next.find(end, o) : null;
+        return null;
     }
 
     /**
@@ -58,7 +58,11 @@ class Node<T> {
      * @return the node
      */
     Node<T> next(int index) {
-        return index <= 0 ? this.next : this.next.next(index - 1);
+        Node<T> node = this.next;
+        while (index-- > 0) {
+            node = node.next;
+        }
+        return node;
     }
 
     /**
@@ -67,6 +71,10 @@ class Node<T> {
      * @return the node
      */
     Node<T> prev(int index) {
-        return index <= 0 ? this.prev : this.prev.prev(index - 1);
+        Node<T> node = this.prev;
+        while (index-- > 0) {
+            node = node.prev;
+        }
+        return node;
     }
 }
