@@ -119,6 +119,14 @@ public interface Sequence<T> extends Container<T>, DoubleIterable<T> {
      */
     void filter(Predicate<Boolean, T> predicate);
 
+    @Override
+    default T first() {
+        if (this.size() <= 0) {
+            return null;
+        }
+        return this.get(0);
+    }
+
     /**
      * Get t.
      * @param index the index
@@ -146,7 +154,7 @@ public interface Sequence<T> extends Container<T>, DoubleIterable<T> {
      * @param values the values
      */
     default void insert(int index, T... values) {
-        for (T value: values) {
+        for (T value : values) {
             this.insert(index, value);
         }
     }
@@ -171,6 +179,22 @@ public interface Sequence<T> extends Container<T>, DoubleIterable<T> {
         }
     }
 
+    @Override
+    default T last() {
+        if (this.size() <= 0) {
+            return null;
+        }
+        return this.get(Math.max(this.size() - 1, 0));
+    }
+
+    @Override
+    default T pop() {
+        if (this.size() <= 0) {
+            return null;
+        }
+        return this.remove(Math.max(this.size() - 1, 0));
+    }
+
     /**
      * Remove t.
      * @param index the index
@@ -191,30 +215,6 @@ public interface Sequence<T> extends Container<T>, DoubleIterable<T> {
      * @return the t
      */
     T set(int index, T value);
-
-    @Override
-    default T first() {
-        if (this.size() <= 0) {
-            return null;
-        }
-        return this.get(0);
-    }
-
-    @Override
-    default T last() {
-        if (this.size() <= 0) {
-            return null;
-        }
-        return this.get(Math.max(this.size()-1, 0));
-    }
-
-    @Override
-    default T pop() {
-        if (this.size() <= 0) {
-            return null;
-        }
-        return this.remove(Math.max(this.size()-1, 0));
-    }
 
     /**
      * Shift t.

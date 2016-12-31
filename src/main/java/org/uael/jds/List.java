@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 /**
  * The type List.
- *
  * @param <T> the type parameter
  */
 public class List<T> extends LinkedSequence<T> implements Queryable<T> {
@@ -17,7 +16,6 @@ public class List<T> extends LinkedSequence<T> implements Queryable<T> {
 
     /**
      * Instantiates a new List.
-     *
      * @param values the values
      */
     @SafeVarargs
@@ -27,7 +25,6 @@ public class List<T> extends LinkedSequence<T> implements Queryable<T> {
 
     /**
      * Instantiates a new List.
-     *
      * @param iterable the iterable
      */
     public List(Iterable<? extends T> iterable) {
@@ -36,7 +33,6 @@ public class List<T> extends LinkedSequence<T> implements Queryable<T> {
 
     /**
      * Instantiates a new List.
-     *
      * @param iterator the iterator
      */
     public List(Iterator<? extends T> iterator) {
@@ -45,7 +41,6 @@ public class List<T> extends LinkedSequence<T> implements Queryable<T> {
 
     /**
      * Count int.
-     *
      * @param predicate the predicate
      * @return the int
      */
@@ -62,7 +57,6 @@ public class List<T> extends LinkedSequence<T> implements Queryable<T> {
 
     /**
      * Select list.
-     *
      * @param <U>       the type parameter
      * @param predicate the predicate
      * @return the list
@@ -81,7 +75,6 @@ public class List<T> extends LinkedSequence<T> implements Queryable<T> {
 
     /**
      * Where list.
-     *
      * @param predicate the predicate
      * @return the list
      */

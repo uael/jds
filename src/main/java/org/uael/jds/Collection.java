@@ -4,7 +4,6 @@ import java.util.Iterator;
 
 /**
  * The interface Collection.
- *
  * @param <T> the type parameter
  */
 public interface Collection<T> extends Iterable<T> {
@@ -50,7 +49,6 @@ public interface Collection<T> extends Iterable<T> {
 
     /**
      * Is empty boolean.
-     *
      * @return the boolean
      */
     default boolean isEmpty() {
@@ -59,7 +57,6 @@ public interface Collection<T> extends Iterable<T> {
 
     /**
      * Size int.
-     *
      * @return the int
      */
     int size();

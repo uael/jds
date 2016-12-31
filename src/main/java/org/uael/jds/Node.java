@@ -4,7 +4,6 @@ import java.util.Objects;
 
 /**
  * The type Node.
- *
  * @param <T> the type parameter
  */
 class Node<T> {
@@ -21,7 +20,6 @@ class Node<T> {
 
     /**
      * Instantiates a new Node.
-     *
      * @param value the value
      */
     Node(T value) {
@@ -40,7 +38,6 @@ class Node<T> {
 
     /**
      * Find node node.
-     *
      * @param o the o
      * @return the node
      */
@@ -57,7 +54,6 @@ class Node<T> {
 
     /**
      * Next node.
-     *
      * @param index the index
      * @return the node
      */
@@ -71,7 +67,6 @@ class Node<T> {
 
     /**
      * Prev node.
-     *
      * @param index the index
      * @return the node
      */

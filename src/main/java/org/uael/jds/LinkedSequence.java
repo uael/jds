@@ -5,7 +5,6 @@ import java.util.Objects;
 
 /**
  * The type Linked base.
- *
  * @param <T> the type parameter
  */
 abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<T> {
@@ -18,7 +17,6 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param values the values
      */
     @SafeVarargs
@@ -28,7 +26,6 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param iterable the iterable
      */
     LinkedSequence(Iterable<? extends T> iterable) {
@@ -37,7 +34,6 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param iterator the iterator
      */
     LinkedSequence(Iterator<? extends T> iterator) {
@@ -62,18 +58,6 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
             }
         }
         return values.length > 0;
-    }
-
-    @Override
-    public int indexOf(Object object) {
-        return indexOf(this.next, object, 0);
-    }
-
-    private int indexOf(Node<T> node, Object object, int index) {
-        if (node == this) {
-            return -1;
-        }
-        return Objects.equals(node.value, object) ? index : indexOf(node.next, object, index+1);
     }
 
     @Override
@@ -143,7 +127,6 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
 
     /**
      * Filter.
-     *
      * @param node      the node
      * @param predicate the predicate
      */
@@ -160,6 +143,18 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
     @Override
     public T get(int index) {
         return this.next(index).value;
+    }
+
+    @Override
+    public int indexOf(Object object) {
+        return indexOf(this.next, object, 0);
+    }
+
+    private int indexOf(Node<T> node, Object object, int index) {
+        if (node == this) {
+            return -1;
+        }
+        return Objects.equals(node.value, object) ? index : indexOf(node.next, object, index + 1);
     }
 
     @Override
@@ -218,23 +213,23 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
 
     @Override
     public void unshift(T value) {
-        this.push_front(value);
+        this.insertAfter(this, value);
     }
 
     @Override
     @SafeVarargs
     public final void unshift(T... values) {
-        this.push_front(values);
+        this.insertAfter(this, values);
     }
 
     @Override
     public void unshift(Iterable<? extends T> iterable) {
-        this.push_front(iterable.iterator());
+        this.insertAfter(this, iterable.iterator());
     }
 
     @Override
     public void unshift(Iterator<? extends T> iterator) {
-        this.push_front(iterator);
+        this.insertAfter(this, iterator);
     }
 
     /**
@@ -263,13 +258,13 @@ abstract class LinkedSequence<T> extends LinkedContainer<T> implements Sequence<
         }
 
         @Override
-        public T previous() {
-            return (current = current.prev).value;
+        public T next() {
+            return (current = current.next).value;
         }
 
         @Override
-        public T next() {
-            return (current = current.next).value;
+        public T previous() {
+            return (current = current.prev).value;
         }
     }
 }

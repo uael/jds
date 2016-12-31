@@ -5,7 +5,6 @@ import java.util.NoSuchElementException;
 
 /**
  * The type Linked base.
- *
  * @param <T> the type parameter
  */
 abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
@@ -23,7 +22,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param values the values
      */
     @SafeVarargs
@@ -34,7 +32,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param iterable the iterable
      */
     LinkedCollection(Iterable<? extends T> iterable) {
@@ -44,21 +41,11 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Instantiates a new Linked base.
-     *
      * @param iterator the iterator
      */
     LinkedCollection(Iterator<? extends T> iterator) {
         super();
         this.insertBefore(this, iterator);
-    }
-
-    /**
-     * Back node.
-     *
-     * @return the node
-     */
-    final Node<T> back() {
-        return this.prev;
     }
 
     @Override
@@ -68,17 +55,7 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
     }
 
     /**
-     * Front node.
-     *
-     * @return the node
-     */
-    final Node<T> front() {
-        return this.next;
-    }
-
-    /**
      * Insert after node.
-     *
      * @param node  the node
      * @param value the value
      * @return the node
@@ -89,18 +66,21 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Insert after node.
-     *
      * @param node   the node
      * @param values the values
      * @return the node
      */
+    @SafeVarargs
     final Node<T> insertAfter(Node<T> node, T... values) {
-        return this.insertAfter(node, values, 0);
+        Node<T> n = node;
+        for (T value : values) {
+            n = this.insertAfter(n, value);
+        }
+        return n;
     }
 
     /**
      * Insert after node.
-     *
      * @param node     the node
      * @param iterator the iterator
      * @return the node
@@ -112,16 +92,8 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
         return this.insertAfter(this.insertAfter(node, iterator.next()), iterator);
     }
 
-    private Node<T> insertAfter(Node<T> node, T[] values, int index) {
-        if (index >= values.length) {
-            return node;
-        }
-        return this.insertAfter(this.insertAfter(node, values[index]), values, index + 1);
-    }
-
     /**
      * Insert before node.
-     *
      * @param node  the node
      * @param value the value
      * @return the node
@@ -132,18 +104,21 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Insert before node.
-     *
      * @param node   the node
      * @param values the values
      * @return the node
      */
+    @SafeVarargs
     final Node<T> insertBefore(Node<T> node, T... values) {
-        return this.insertBefore(node, values, 0);
+        Node<T> n = node;
+        for (T value : values) {
+            n = this.insertBefore(node, value);
+        }
+        return n;
     }
 
     /**
      * Insert before node.
-     *
      * @param node     the node
      * @param iterator the iterator
      * @return the node
@@ -155,21 +130,8 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
         return this.insertAfter(this.insertBefore(node, iterator.next()), iterator);
     }
 
-    private Node<T> insertBefore(Node<T> node, T[] values, int index) {
-        if (index >= values.length) {
-            return node;
-        }
-        return this.insertAfter(this.insertBefore(node, values[index]), values, index + 1);
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.size == 0;
-    }
-
     /**
      * Link node.
-     *
      * @param node the node
      * @param prev the prev
      * @param next the next
@@ -192,7 +154,7 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
         if (index < this.size >> 1) {
             return super.next(index);
         } else {
-            return super.prev(this.size-index-1);
+            return super.prev(this.size - index - 1);
         }
     }
 
@@ -204,41 +166,8 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
         if (index < this.size >> 1) {
             return super.prev(index);
         } else {
-            return super.next(this.size-index-1);
+            return super.next(this.size - index - 1);
         }
-    }
-
-    /**
-
-    /**
-     * Push front node.
-     *
-     * @param value the value
-     * @return the node
-     */
-    final Node<T> push_front(T value) {
-        return this.insertAfter(this, value);
-    }
-
-    /**
-     * Push front node.
-     *
-     * @param values the values
-     * @return the node
-     */
-    @SafeVarargs
-    final Node<T> push_front(T... values) {
-        return this.insertAfter(this, values);
-    }
-
-    /**
-     * Push front node.
-     *
-     * @param iterator the iterator
-     * @return the node
-     */
-    final Node<T> push_front(Iterator<? extends T> iterator) {
-        return this.insertAfter(this, iterator);
     }
 
     @Override
@@ -248,7 +177,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Unlink node.
-     *
      * @param node the node
      * @return the node
      */
@@ -258,7 +186,6 @@ abstract class LinkedCollection<T> extends Node<T> implements Collection<T> {
 
     /**
      * Unlink node.
-     *
      * @param node the node
      * @param prev the prev
      * @param next the next
