@@ -18,19 +18,30 @@ public interface Collection<T> extends Iterable<T> {
      * @param values the values
      */
     @SuppressWarnings("unchecked")
-    void add(T... values);
+    default void add(T... values) {
+        for (T value : values) {
+            add(value);
+        }
+    }
 
     /**
      * Add.
      * @param iterable the iterable
      */
-    void add(Iterable<? extends T> iterable);
+    default void add(Iterable<? extends T> iterable) {
+        add(iterable.iterator());
+    }
 
     /**
      * Add.
      * @param iterator the iterator
      */
-    void add(Iterator<? extends T> iterator);
+    default void add(Iterator<? extends T> iterator) {
+        if (iterator.hasNext()) {
+            add(iterator.next());
+            add(iterator);
+        }
+    }
 
     /**
      * Clear.
