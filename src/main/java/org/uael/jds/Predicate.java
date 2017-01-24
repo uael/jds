@@ -5,7 +5,7 @@ package org.uael.jds;
  * @param <U> the type parameter
  * @param <T> the type parameter
  */
-interface Predicate<U, T> {
+public interface Predicate<U, T> {
     /**
      * Call u.
      * @param item the item
