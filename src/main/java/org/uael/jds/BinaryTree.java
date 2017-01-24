@@ -2,17 +2,16 @@ package org.uael.jds;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
-import java.util.Iterator;
 
 /**
  * The type B tree.
  * @param <T> the type parameter
  */
-public class BiTree<T> {
+public class BinaryTree<T> {
     /**
      * The Root.
      */
-    Node root;
+    public Node root;
     /**
      * The Size.
      */
@@ -21,9 +20,30 @@ public class BiTree<T> {
     /**
      * Instantiates a new B tree.
      */
-    public BiTree() {
+    public BinaryTree() {
         size = 0;
         root = null;
+    }
+
+    public BinaryTree(T ...values) {
+        this();
+        List<Node> line = new List<>();
+        Queue<T> queue = new Queue<>(values);
+        if (!queue.isEmpty()) {
+            line.push(insertLeft(queue.pop()));
+        }
+        while (!queue.isEmpty()) {
+            for (Node node : line.copy()) {
+                if (queue.isEmpty()) {
+                    break;
+                }
+                line.push(node.insertLeft(queue.pop()));
+                if (!queue.isEmpty()) {
+                    line.push(node.insertRight(queue.pop()));
+                }
+                line.erase(node);
+            }
+        }
     }
 
     public void clear() {
@@ -37,8 +57,8 @@ public class BiTree<T> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BiTree<?> biTree = (BiTree<?>) o;
-        return size == biTree.size && (root != null ? root.equals(biTree.root) : biTree.root == null);
+        BinaryTree<?> binaryTree = (BinaryTree<?>) o;
+        return size == binaryTree.size && (root != null ? root.equals(binaryTree.root) : binaryTree.root == null);
     }
 
     @Override
@@ -163,7 +183,7 @@ public class BiTree<T> {
 
     @Override
     public String toString() {
-        return "BiTree{" +
+        return "BinaryTree{" +
             (root != null ? "root=" + root + ", size=" + size : "size=0") +
             '}';
     }
@@ -171,7 +191,7 @@ public class BiTree<T> {
     /**
      * The type Node.
      */
-    class Node {
+    public class Node {
         /**
          * The Left.
          */
@@ -182,7 +202,7 @@ public class BiTree<T> {
         /**
          * The Value.
          */
-        T value;
+        public T value;
 
         /**
          * Instantiates a new Node.

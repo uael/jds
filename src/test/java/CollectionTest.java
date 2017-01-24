@@ -15,16 +15,7 @@ abstract class CollectionTest<U extends Collection<Integer>> {
     /**
      * The Empty, Size 1, Size 2 and Size Max.
      */
-    U empty, /**
-     * The Size 1.
-     */
-    size1, /**
-     * The Size 2.
-     */
-    size2, /**
-     * The Size max.
-     */
-    sizeMax;
+    U empty, size1, size2, sizeMax;
     /**
      * The MaxSize.
      */
@@ -32,10 +23,7 @@ abstract class CollectionTest<U extends Collection<Integer>> {
     /**
      * The One and Two.
      */
-    Integer one, /**
-     * The Two.
-     */
-    two;
+    Integer one, two;
 
     /**
      * Instantiates a new Collection test.

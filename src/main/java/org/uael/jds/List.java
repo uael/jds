@@ -91,4 +91,8 @@ public class List<T> extends LinkedSequence<T> implements Queryable<T> {
         }
         return this.where(node.next, result, predicate);
     }
+
+    public List<T> copy() {
+        return new List<>(this);
+    }
 }

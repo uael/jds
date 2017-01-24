@@ -6,13 +6,22 @@ import java.util.Iterator;
  * The type Bi s tree.
  * @param <T> the type parameter
  */
-public class BiSTree<T extends Comparable<T>> extends BiTree<AvlNode<T>> implements Collection<T> {
+public class BinarySearchTree<T extends Comparable<T>> extends BinaryTree<AvlNode<T>> implements Collection<T> {
 
     /**
      * Instantiates a new Bi s tree.
      */
-    public BiSTree() {
+    public BinarySearchTree() {
         super();
+    }
+
+    /**
+     * Instantiates a new Binary search tree.
+     * @param values the values
+     */
+    public BinarySearchTree(T ...values) {
+        this();
+        add(values);
     }
 
     @Override
